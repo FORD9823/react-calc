@@ -1,3 +1,29 @@
 #root {
     
 }
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+.calcDisplay {
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    font-size: 30px;
+    border: 5px solid black;
+}
+button{ 
+    font-size: 40px;
+    margin: 5px;
+    padding: 10px;
+}
+.buttonsField {
+    width: 40%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    justify-content: center;
+}

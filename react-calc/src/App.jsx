@@ -17,26 +17,38 @@ function App() {
     const [operand1, setOperand1] = useState('')
     const [operand2, setOperand2] = useState('')
     const [operator, setOperator] = useState('')
+    const [isResult, setIsResult] = useState(false)
 
     const onPlusClick = () => {
         setOperator('+')
+        setIsResult(false)
     }
     const onMinusClick = () => {
         setOperator('-')
+        setIsResult(false)
     }
     const onSolveClick = () => {
-        setOperator('=')
+        if(operator === '+'){
+            setOperand1(Number(operand1) + Number(operand2))
+        }else{
+            setOperand1(Number(operand1) - Number(operand2))
+        }
+        setOperand1((prev) => prev )
+        setOperand2('')
+        setOperator('')
+        setIsResult(true)
     }
     const onDiscardClick = () => {
         setOperator('')
         setOperand1('')
         setOperand2('')
+        setIsResult(false)
     }
 
   return (
     <>
         <div className='container'>
-            <div className='calcDisplay'>
+            <div className='calcDisplay' style={isResult ? {color: 'red'} : {color: 'green'} }>
                 Value: {operand1} {operator} {operand2}
             </div>
             <div className='buttonsField'>
@@ -51,11 +63,12 @@ function App() {
                                 } 
                             }else { 
                                 if(operand2 === '0'){
-                                    setOperand1(item.value)
+                                    setOperand2(item.value)
                                 }else {
-                                    setOperand1(operand2 + item.value)
+                                    setOperand2(operand2 + item.value)
                                 }
                             }
+                            setIsResult(false)
                         }} key={item.id}>
                             {item.value}
                         </button>
